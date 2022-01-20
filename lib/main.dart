@@ -17,6 +17,13 @@ class _MyAppState extends State {
   var _questionIndex = 0;
   var _totalScore = 0;
 
+  void _restartQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _questionAnswer(int score) {
     _totalScore += score;
     setState(() {
@@ -28,36 +35,36 @@ class _MyAppState extends State {
     {
       'questionText': 'what\'s your favourite color?',
       'Answer': [
-        {'choice': 'white', 'score': 10},
-        {'choice': 'black', 'score': 8},
-        {'choice': 'blue', 'score': 7},
-        {'choice': 'red', 'score': 6},
+        {'choice': 'white', 'score': 0},
+        {'choice': 'black', 'score': 10},
+        {'choice': 'blue', 'score': 0},
+        {'choice': 'red', 'score': 0},
       ],
     },
     {
       'questionText': 'what\'s your favourite animal?',
       'Answer': [
         {'choice': 'Lion', 'score': 10},
-        {'choice': 'fox', 'score': 9},
-        {'choice': 'tiger', 'score': 8},
-        {'choice': 'elephant', 'score': 6},
+        {'choice': 'fox', 'score': 0},
+        {'choice': 'tiger', 'score': 0},
+        {'choice': 'elephant', 'score': 0},
       ],
     },
     {
       'questionText': 'what\'s your favourite food?',
       'Answer': [
-        {'choice': 'meet', 'score': 8},
+        {'choice': 'meet', 'score': 0},
         {'choice': 'chicken', 'score': 10},
-        {'choice': 'fish', 'score': 5},
-        {'choice': 'vegetables', 'score': 9},
+        {'choice': 'fish', 'score': 0},
+        {'choice': 'vegetables', 'score': 0},
       ],
     },
     {
       'questionText': 'what\'s your favourite player?',
       'Answer': [
-        {'choice': 'Cr7', 'score': 10},
-        {'choice': 'messi', 'score': 5},
-        {'choice': 'Mo.Salah', 'score': 10},
+        {'choice': 'Cr7', 'score': 0},
+        {'choice': 'messi', 'score': 0},
+        {'choice': 'Mo.Salah', 'score': 0},
         {'choice': 'سعيد قطة', 'score': 10},
       ],
     }
@@ -76,7 +83,10 @@ class _MyAppState extends State {
                 questionIndex: _questionIndex,
                 questions: questions,
               )
-            : Result(_totalScore),
+            : Result(
+                resultScore: _totalScore,
+                restHandler: _restartQuiz,
+              ),
       ),
     );
   }
